@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="LinkedLists.Consolle/LinkedLists.Consolle.csproj" />
+  <Project Path="SimpleList/DoubleList.csproj" />
+</Solution>
