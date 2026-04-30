@@ -79,4 +79,55 @@ public class DoubleLinkedList<T> where T : IComparable<T>
         current.Next = newNode;
         newNode.Previous = current;
     }
+
+    public void SortDescending(T data)
+    {
+        if (_head == null) return;
+        var current = _head;
+        while (current != null)
+        {
+            var next = current.Next;
+            while (next != null)
+            {
+                if (current.Data.CompareTo(next.Data) < 0)
+                {
+                    var temp = current.Data;
+                    current.Data = next.Data;
+                    next.Data = temp;
+                }
+                next = next.Next;
+            }
+            current = current.Next;
+        }
+    }
+
+    public List<T> ShowModes()
+    {
+
+    }
+
+    public void ShowGraphic()
+    { }
+
+    public bool Exists(T data)
+    {
+        var current = _head;
+
+        while (current != null)
+        {
+            if (current.Data.CompareTo(data) == 0)
+            {
+                return true;
+            }
+
+            current = current.Next;
+        }
+        return false;
+    }
+
+    public void RemoveOccurrence()
+    { }
+
+    public void RemoveAllOccurrences()
+    { }
 }
