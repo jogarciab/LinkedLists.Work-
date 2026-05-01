@@ -53,7 +53,7 @@ public class DoubleLinkedList<T> where T : IComparable<T>
         
         Node<T> current = _head;
 
-        if (string.Compare(data.ToString(), _head.Data.ToString()) < 0) // Insert at start
+        if (string.Compare(data.ToString(), _head.Data!.ToString()) < 0) // Insert at start
         {
             newNode.Next = _head;
             _head.Previous = newNode;
@@ -61,7 +61,7 @@ public class DoubleLinkedList<T> where T : IComparable<T>
             return;
         }
 
-        while (current.Next != null && current.Next.Data.CompareTo(data) < 0) // Find the correct position 
+        while (current.Next != null && current.Next.Data!.CompareTo(data) < 0) // Find the correct position 
         {
             current = current.Next;
         }
@@ -89,7 +89,7 @@ public class DoubleLinkedList<T> where T : IComparable<T>
             var next = current.Next;
             while (next != null)
             {
-                if (current.Data.CompareTo(next.Data) < 0)
+                if (current.Data!.CompareTo(next.Data) < 0)
                 {
                     var temp = current.Data;
                     current.Data = next.Data;
@@ -101,9 +101,57 @@ public class DoubleLinkedList<T> where T : IComparable<T>
         }
     }
 
-    public List<T> ShowModes()
+    public string ShowModes()
     {
+        if (_head == null)
+            return "No Data";
 
+        var current = _head;
+
+        T currentValue = current.Data!;
+        int currentCount = 1;
+        int maxCount = 1;
+
+        List<T>  modes = new List<T>();
+
+        current = current.Next;
+
+        while (current != null)
+        {
+            if (current.Data!.CompareTo(currentValue) == 0)
+            {
+                currentCount++;
+            }
+            else
+            {
+                if (currentCount > maxCount)
+                {
+                    modes.Clear();
+                    modes.Add(currentValue);
+                    maxCount = currentCount;
+                }
+                else if (currentCount == maxCount)
+                {
+                    modes.Add(currentValue);
+                }
+                currentValue = current.Data;
+                currentCount = 1;
+            }
+            current = current.Next;
+        }
+
+        if (currentCount > maxCount)
+        {
+            modes.Clear();
+            modes.Add(currentValue);
+
+        }
+        else if (currentCount == maxCount)
+        {
+            modes.Add(currentValue);
+        }
+
+        return string.Join(", ", modes);
     }
 
     public void ShowGraphic()
@@ -115,7 +163,7 @@ public class DoubleLinkedList<T> where T : IComparable<T>
 
         while (current != null)
         {
-            if (current.Data.CompareTo(data) == 0)
+            if (current.Data!.CompareTo(data) == 0)
             {
                 return true;
             }

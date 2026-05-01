@@ -22,9 +22,11 @@ do
             Console.WriteLine(list.ToStringReverse());
             break;
         case "4":
-            Console.Write("Enter value: ");
-            value = Console.ReadLine() ?? string.Empty;
             list.SortDescending(value);
+            Console.WriteLine("List sorted in descending order.");
+            break;
+        case "5":
+            Console.WriteLine("The mode(s) are: " + list.ShowModes());
             break;
         case "7":
             Console.Write("Enter value: ");
@@ -46,6 +48,7 @@ string Menu()
     Console.WriteLine("2. Show list forward. ");
     Console.WriteLine("3. Show list backward. ");
     Console.WriteLine("4. Sort descending. ");
+    Console.WriteLine("5. Show modes. ");
     Console.WriteLine("7. Exists. ");
     Console.WriteLine("0. Exit. ");
     Console.Write("Enter your option: ");
