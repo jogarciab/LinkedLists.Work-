@@ -33,6 +33,12 @@ do
             value = Console.ReadLine() ?? string.Empty;
             Console.WriteLine(list.Exists(value) ? "¡Exists!" : "¡Doesn't exist!");
             break;
+        case "8":
+            Console.Write("Enter value: ");
+            value = Console.ReadLine() ?? string.Empty;
+            list.RemoveOccurrence(value);
+            Console.WriteLine($"Removed one occurrence of {value}.");
+            break;
         case "0":
             Console.WriteLine("Exiting...");
             break;
@@ -49,7 +55,10 @@ string Menu()
     Console.WriteLine("3. Show list backward. ");
     Console.WriteLine("4. Sort descending. ");
     Console.WriteLine("5. Show modes. ");
+    Console.WriteLine("6. Show graphic.");
     Console.WriteLine("7. Exists. ");
+    Console.WriteLine("8. Remove an occurrence. ");
+    Console.WriteLine("9. Remove all occurrences. ");
     Console.WriteLine("0. Exit. ");
     Console.Write("Enter your option: ");
     return Console.ReadLine() ?? string.Empty;
