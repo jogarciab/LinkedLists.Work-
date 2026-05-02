@@ -154,8 +154,25 @@ public class DoubleLinkedList<T> where T : IComparable<T>
         return string.Join(", ", modes);
     }
 
-    public void ShowGraphic()
-    { }
+    public string ShowGraphic()
+    { 
+        var current = _head;
+        var result = string.Empty;
+
+        while (current != null)
+        {
+            T value = current!.Data!;
+            int count = 0;
+
+            while (current != null && current.Data!.CompareTo(value) == 0)
+            {
+                count++;
+                current = current.Next;
+            }
+            result += $"{value}: {new string('*', count)}\n";
+        }
+        return result;
+    }
 
     public bool Exists(T data)
     {

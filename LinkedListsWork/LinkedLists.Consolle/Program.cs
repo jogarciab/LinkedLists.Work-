@@ -28,6 +28,9 @@ do
         case "5":
             Console.WriteLine($"The mode(s) are: {list.ShowModes()}");
             break;
+        case "6":
+            Console.WriteLine(list.ShowGraphic());
+            break;
         case "7":
             Console.Write("Enter value: ");
             value = Console.ReadLine() ?? string.Empty;
