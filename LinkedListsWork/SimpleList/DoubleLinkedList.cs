@@ -218,6 +218,48 @@ public class DoubleLinkedList<T> where T : IComparable<T>
         return false;
     }
 
-    public void RemoveAllOccurrences()
-    { }
+    public int RemoveAllOccurrences(T data)
+    {
+        int count = 0;
+        var current = _head;
+
+        while (current != null)
+        {
+            var next = current.Next;
+
+            if (current.Data!.CompareTo(data) == 0)
+            {
+                if (current == _head)
+                {
+                    _head = _head.Next;
+
+                    if (_head != null)
+                    {
+                        _head.Previous = null;
+                    }
+                    else
+                    {
+                        _tail = null;
+                    }
+                }
+                else if (current == _tail)
+                {
+                    _tail = _tail.Previous;
+
+                    if (_tail != null)
+                    {
+                        _tail.Next = null;
+                    }
+                }
+                else
+                {
+                    current.Previous!.Next = current.Next;
+                    current.Next!.Previous = current.Previous;
+                }
+                count++;
+            }
+            current = next;
+        }
+        return count;
+    }
 }
